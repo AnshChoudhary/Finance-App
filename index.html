@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinTrack - Personal Finance Tracker</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+    
+    <div class="container">
+        <header>
+            <h1 class="app-title">FinTrack</h1>
+            <p class="app-subtitle">Track your personal finances with ease</p>
+        </header>
+        
+        <div class="card balance-card">
+            <h2 class="balance-title">CURRENT BALANCE</h2>
+            <p class="balance-amount" id="balanceAmount">₹0.00</p>
+            
+            <div class="currency-selector">
+                <button class="currency-btn" data-currency="inr">INR</button>
+                <button class="currency-btn active" data-currency="aed">AED</button>
+                <button class="currency-btn" data-currency="usd">USD</button>
+            </div>
+            
+            <div class="summary">
+                <div class="summary-item">
+                    <p class="summary-title">INCOME</p>
+                    <p class="summary-amount income" id="incomeAmount">₹0.00</p>
+                </div>
+                <div class="summary-item">
+                    <p class="summary-title">EXPENSE</p>
+                    <p class="summary-amount expense" id="expenseAmount">₹0.00</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-container">
+            <div class="card">
+                <div class="card-title">
+                    <span>Add Transaction</span>
+                </div>
+                
+                <form class="transaction-form" id="transactionForm">
+                    <div class="form-group">
+                        <label class="form-label" for="transactionName">Description</label>
+                        <input type="text" class="form-input" id="transactionName" placeholder="What was this for?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="transactionAmount">Amount</label>
+                        <input type="number" class="form-input" id="transactionAmount" placeholder="0.00" step="0.01" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <div class="transaction-type-buttons">
+                            <button type="button" class="type-btn income active" data-type="income">
+                                <i class="fas fa-arrow-down"></i>
+                            </button>
+                            <button type="button" class="type-btn expense" data-type="expense">
+                                <i class="fas fa-arrow-up"></i>
+                            </button>
+                        </div>
+                        <input type="hidden" id="transactionType" value="income">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <div class="category-selector">
+                            <div class="selected-category" id="selectedCategory">
+                                <i class="fas fa-money-bill-wave category-icon"></i>
+                                <span>Salary</span>
+                            </div>
+                            <div class="category-tray">
+                                <div class="category-group income-categories">
+                                    <button type="button" class="category-btn active" data-category="salary">
+                                        <i class="fas fa-money-bill-wave"></i>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="investment">
+                                        <i class="fas fa-chart-line"></i>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="gift">
+                                        <i class="fas fa-gift"></i>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="other-income">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </div>
+                                <div class="category-group expense-categories" style="display: none;">
+                                    <button type="button" class="category-btn" data-category="food">
+                                        <i class="fas fa-utensils"></i>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="transport">
+                                        <i class="fas fa-car"></i>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="entertainment">
+                                        <i class="fas fa-film"></i>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="shopping">
+                                        <i class="fas fa-shopping-bag"></i>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="utilities">
+                                        <i class="fas fa-bolt"></i>
+                                    </button>
+                                    <button type="button" class="category-btn" data-category="other-expense">
+                                        <i class="fas fa-plus-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="transactionCategory" value="salary">
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Add Transaction</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <div class="card-title">
+                    <span>Recent Transactions</span>
+                </div>
+                
+                <ul class="transaction-list" id="transactionList">
+                    <div class="empty-state" id="emptyState">
+                        <div class="empty-icon">
+                            <i class="fas fa-receipt"></i>
+                        </div>
+                        <p>No transactions yet</p>
+                        <p>Add a transaction to get started</p>
+                    </div>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
